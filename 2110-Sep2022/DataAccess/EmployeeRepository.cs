@@ -94,7 +94,7 @@ namespace _2110_Sep2022.DataAccess
                 {
                     command.Connection = connection;
                     command.CommandType = System.Data.CommandType.Text;
-                    command.CommandText = "DELETE FROM Employee WHERE ID = @ID";
+                    command.CommandText = "SELECT * FROM Employee WHERE ID = @ID";
                     command.Parameters.AddWithValue("@ID", idFilter);
                     try
                     {
@@ -106,10 +106,16 @@ namespace _2110_Sep2022.DataAccess
                         // error here
                         Console.WriteLine("Error!! The data cannot delete.....");
                     }
-                    finally
+                    
+                    SqlDataReader dataReader = command.ExecuteReader();
+                    while (dataReader.Read())//THIS always evaluates to false
                     {
-                        connection.Close();
+                       string employeeID = dataReader["ID"].ToString();
+                       string employeeName = dataReader["Name"].ToString();
+                        Console.WriteLine("ID: {0}", employeeID);
+                        Console.WriteLine("Name: {0}", employeeName);
                     }
+
                 }
             }
         }
