@@ -46,8 +46,6 @@ namespace _2110_Sep2022.DataAccess
 
                 }
             }
-
-
         }
         /// <summary>
         /// Assignment1
@@ -77,7 +75,6 @@ namespace _2110_Sep2022.DataAccess
                     {
                         connection.Close();
                     }
-
                 }
             }
             
@@ -104,7 +101,7 @@ namespace _2110_Sep2022.DataAccess
                     catch (SqlException)
                     {
                         // error here
-                        Console.WriteLine("Error!! The data cannot delete.....");
+                        Console.WriteLine("Error!! The data cannot filter.....");
                     }
                     
                     SqlDataReader dataReader = command.ExecuteReader();
@@ -120,6 +117,81 @@ namespace _2110_Sep2022.DataAccess
             }
         }
 
+        /// <summary>
+        /// Assignment 1
+        /// </summary>
+        /// <param name="employee"></param>
+        public void Update(Employee employee)
+        {
+            using (SqlConnection connection = GetConnection())
+            {
+                using (SqlCommand command = new SqlCommand())
+                {
+                    command.Connection = connection;
+                    command.CommandType = System.Data.CommandType.Text;
+                    command.CommandText = "UPDATE INTO Employee(NAME) VALUES (@NAME)";
+                    command.Parameters.AddWithValue("@NAME", employee.Name);
+                    try
+                    {
+                        connection.Open();
+                        int records = command.ExecuteNonQuery();
+                    }
+                    catch (SqlException)
+                    {
+                        // error here
+                        Console.WriteLine("Error!! The data cannot update.....");
+                    }
+
+                    SqlDataReader dataReader = command.ExecuteReader();
+                    while (dataReader.Read())//THIS always evaluates to false
+                    {
+                        string employeeName = dataReader["Name"].ToString();
+                        Console.WriteLine("Name: {0}", employeeName);
+                    }
+
+                }
+            }
+        }
+
+        /// <summary>
+        /// Assignment 1
+        /// </summary>
+        /// <param name="employee"></param>
+        public List<Employee> GetId(string idFilter)
+        {
+            List<Employee> employeesID = new List<Employee>();
+            using (SqlConnection connection = GetConnection())
+            {
+                connection.Open();
+                using (SqlCommand command = new SqlCommand())
+                {
+                    SqlDataReader reader = command.ExecuteReader();
+
+                    command.CommandType = System.Data.CommandType.Text;
+                    command.CommandText = "SELECT * FROM Employee WHERE ID = @ID";
+                    command.Parameters.AddWithValue("@ID", idFilter);
+                    try
+                    {
+                        int records = command.ExecuteNonQuery();
+                    }
+                    catch (SqlException)
+                    {
+                        // error here
+                        Console.WriteLine("Error!! The data cannot filter.....");
+                    }
+
+                    using (SqlDataReader dataReader = command.ExecuteReader())
+                    {
+                        while (dataReader.Read())
+                        {
+                            employeesID.ID = (dataReader["ID"].ToString());
+                        }
+                    }
+                }
+                return employeesID;
+            }
+        }
+
         private SqlConnection GetConnection()
         {
             var connString = readConfiguration.GetConnectionString(EnvironmentSettings.DBEnvironment);
@@ -130,5 +202,7 @@ namespace _2110_Sep2022.DataAccess
             var connection = new SqlConnection(connString);
             return connection;
         }
+
+
     }
 }
