@@ -1,12 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Configuration;
-using System.Text;
+using System.Text;　
 
 
 namespace _2110_Sep2022.DataAccess
 {
-    public class ReadConfiguration
+    public class ReadConfiguration: IReadConfiguration
     {
 
         public string GetConnectionString(string configName)

@@ -9,7 +9,12 @@ namespace _2110_Sep2022
         static void Main(string[] args)
         {
             var program = new Program();
-            program.CreateTable();
+            // program.CreateTable();
+            // program.AddEmployee();
+            // program.DeleteEmployee();
+            // program.GetEmployee();
+            // program.UpdateEmployee();
+            program.GetEmployees();
 
         }
 
@@ -27,6 +32,63 @@ namespace _2110_Sep2022
             sqlCommand.ExecuteNonQuery();
             sqlConnection.Close();
 
+        }
+
+        public void AddEmployee()
+        {
+            var readConfig = new ReadConfiguration();
+            var rep = new EmployeeRepository(readConfig);
+            var emp = new Employee()
+            {
+                ID = "001",
+                Name = "Alex"
+            };
+            rep.Add(emp);
+        }
+
+        public void DeleteEmployee()
+        {
+            var readConfig = new ReadConfiguration();
+            var rep = new EmployeeRepository(readConfig);
+            var emp = new Employee()
+            {
+                ID = "001",
+                Name = "Alex"
+            };
+            rep.Delete(emp);
+        }
+
+        public void GetEmployee()
+        {
+            var readConfig = new ReadConfiguration();
+            var rep = new EmployeeRepository(readConfig);
+
+            var emp = rep.Get("001");
+            Console.WriteLine($"Employee ID: {emp.ID}");
+            Console.WriteLine($"Employee Name: {emp.Name}");
+        }
+
+        public void UpdateEmployee()
+        {
+            var readConfig = new ReadConfiguration();
+            var rep = new EmployeeRepository(readConfig);
+            var emp = new Employee()
+            {
+                ID = "001",
+                Name = "Amy"
+            };
+            rep.Update(emp);
+        }
+        public void GetEmployees()
+        {
+            var readConfig = new ReadConfiguration();
+            var rep = new EmployeeRepository(readConfig);
+
+            foreach(var emp in rep.GetId("001"))
+            {
+                Console.WriteLine($"Employee ID: {emp.ID}");
+                Console.WriteLine($"Employee Name: {emp.Name}");
+            }
         }
     }
 }

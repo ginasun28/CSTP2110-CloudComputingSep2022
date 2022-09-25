@@ -34,8 +34,9 @@ namespace _2110_Sep2022.DataAccess
                         connection.Open();
                         int records = command.ExecuteNonQuery();
                     }
-                    catch(SqlException)
+                    catch(SqlException e)
                     {
+                        Console.WriteLine(e.ToString());
                         // error here
                         Console.WriteLine("Error!! The data is not adding.....");
                     }
@@ -83,7 +84,7 @@ namespace _2110_Sep2022.DataAccess
         /// Assignment1
         /// </summary>
         /// <param name="employee"></param>
-        public void Get(string idFilter)
+        public Employee Get(string idFilter)
         {
             using (SqlConnection connection = GetConnection())
             {
@@ -109,9 +110,13 @@ namespace _2110_Sep2022.DataAccess
                     {
                        string employeeID = dataReader["ID"].ToString();
                        string employeeName = dataReader["Name"].ToString();
-                        Console.WriteLine("ID: {0}", employeeID);
-                        Console.WriteLine("Name: {0}", employeeName);
+                       return new Employee()
+                       {
+                           ID = employeeID,
+                           Name = employeeName
+                       };
                     }
+                    return null;
 
                 }
             }
@@ -129,25 +134,27 @@ namespace _2110_Sep2022.DataAccess
                 {
                     command.Connection = connection;
                     command.CommandType = System.Data.CommandType.Text;
-                    command.CommandText = "UPDATE INTO Employee(NAME) VALUES (@NAME)";
+                    command.CommandText = "UPDATE Employee set Name = @NAME where ID = @ID"; // imporant!!! 一定要寫對
                     command.Parameters.AddWithValue("@NAME", employee.Name);
+                    command.Parameters.AddWithValue("@ID", employee.ID);
                     try
                     {
                         connection.Open();
                         int records = command.ExecuteNonQuery();
                     }
-                    catch (SqlException)
+                    catch (SqlException e)
                     {
+                        Console.WriteLine(e.ToString());
                         // error here
                         Console.WriteLine("Error!! The data cannot update.....");
                     }
 
-                    SqlDataReader dataReader = command.ExecuteReader();
-                    while (dataReader.Read())//THIS always evaluates to false
-                    {
-                        string employeeName = dataReader["Name"].ToString();
-                        Console.WriteLine("Name: {0}", employeeName);
-                    }
+                    //SqlDataReader dataReader = command.ExecuteReader();
+                    //while (dataReader.Read())//THIS always evaluates to false
+                    //{
+                    //    string employeeName = dataReader["Name"].ToString();
+                    //    Console.WriteLine("Name: {0}", employeeName);
+                    //}
 
                 }
             }
@@ -159,20 +166,19 @@ namespace _2110_Sep2022.DataAccess
         /// <param name="employee"></param>
         public List<Employee> GetId(string idFilter)
         {
-            List<Employee> employeesID = new List<Employee>();
+            List<Employee> employees = new List<Employee>();
             using (SqlConnection connection = GetConnection())
             {
-                connection.Open();
                 using (SqlCommand command = new SqlCommand())
                 {
-                    SqlDataReader reader = command.ExecuteReader();
-
+                    command.Connection = connection;
                     command.CommandType = System.Data.CommandType.Text;
                     command.CommandText = "SELECT * FROM Employee WHERE ID = @ID";
                     command.Parameters.AddWithValue("@ID", idFilter);
                     try
                     {
-                        int records = command.ExecuteNonQuery();
+                        connection.Open();
+                        int records = command.ExecuteNonQuery(); // 運行COMMAND
                     }
                     catch (SqlException)
                     {
@@ -180,15 +186,19 @@ namespace _2110_Sep2022.DataAccess
                         Console.WriteLine("Error!! The data cannot filter.....");
                     }
 
-                    using (SqlDataReader dataReader = command.ExecuteReader())
+                    SqlDataReader dataReader = command.ExecuteReader(); // 讀取資料
+                    while (dataReader.Read())//THIS always evaluates to false
                     {
-                        while (dataReader.Read())
+                        var employeeID = dataReader["ID"].ToString();
+                        var employeeName = dataReader["Name"].ToString();
+                        employees.Add(new Employee()
                         {
-                            employeesID.ID = (dataReader["ID"].ToString());
-                        }
+                            ID = employeeID,
+                            Name = employeeName
+                        });
                     }
                 }
-                return employeesID;
+                return employees;
             }
         }
 
