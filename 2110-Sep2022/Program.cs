@@ -27,7 +27,7 @@ namespace _2110_Sep2022
 
             var sqlConnection = new SqlConnection(connString);
 
-            string sqlStatement = "CREATE TABLE Emoloyee(ID VARCHAR(30) NOT NULL, NAME VARCHAR(50) NOT NULL)";
+            string sqlStatement = "CREATE TABLE Emoloyee2(ID VARCHAR(30) NOT NULL, NAME VARCHAR(50) NOT NULL)";
             SqlCommand sqlCommand = new SqlCommand(sqlStatement, sqlConnection);
             sqlConnection.Open();
             sqlCommand.ExecuteNonQuery();
