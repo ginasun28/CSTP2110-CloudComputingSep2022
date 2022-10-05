@@ -10,11 +10,12 @@ namespace _2110_Sep2022
         {
             var program = new Program();
             // program.CreateTable();
+
             // program.AddEmployee();
+            program.GetEmployee();
             // program.DeleteEmployee();
-            // program.GetEmployee();
             // program.UpdateEmployee();
-            program.GetEmployees();
+            // program.GetEmployees();
 
         }
 

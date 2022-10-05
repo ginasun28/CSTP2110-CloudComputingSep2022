@@ -26,7 +26,7 @@ namespace _2110_Sep2022.DataAccess
                 {
                     command.Connection = connection;
                     command.CommandType = System.Data.CommandType.Text;
-                    command.CommandText = "INSERT INTO Employee(ID, NAME) VALUES (@ID, @NAME)";
+                    command.CommandText = "INSERT INTO Employee2(ID, NAME) VALUES (@ID, @NAME)";
                     command.Parameters.AddWithValue("@ID", employee.ID);
                     command.Parameters.AddWithValue("@NAME", employee.Name);
                     try
@@ -60,7 +60,7 @@ namespace _2110_Sep2022.DataAccess
                 {
                     command.Connection = connection;
                     command.CommandType = System.Data.CommandType.Text;
-                    command.CommandText = "DELETE FROM Employee WHERE ID = @ID";
+                    command.CommandText = "DELETE FROM Employee2 WHERE ID = @ID";
                     command.Parameters.AddWithValue("@ID", employee.ID);
                     try
                     {
@@ -92,7 +92,7 @@ namespace _2110_Sep2022.DataAccess
                 {
                     command.Connection = connection;
                     command.CommandType = System.Data.CommandType.Text;
-                    command.CommandText = "SELECT * FROM Employee WHERE ID = @ID";
+                    command.CommandText = "SELECT * FROM Employee2 WHERE ID = @ID";
                     command.Parameters.AddWithValue("@ID", idFilter);
                     try
                     {
@@ -134,7 +134,7 @@ namespace _2110_Sep2022.DataAccess
                 {
                     command.Connection = connection;
                     command.CommandType = System.Data.CommandType.Text;
-                    command.CommandText = "UPDATE Employee set Name = @NAME where ID = @ID"; // imporant!!! 一定要寫對
+                    command.CommandText = "UPDATE Employee2 set Name = @NAME where ID = @ID"; // imporant!!! 一定要寫對
                     command.Parameters.AddWithValue("@NAME", employee.Name);
                     command.Parameters.AddWithValue("@ID", employee.ID);
                     try
@@ -173,7 +173,7 @@ namespace _2110_Sep2022.DataAccess
                 {
                     command.Connection = connection;
                     command.CommandType = System.Data.CommandType.Text;
-                    command.CommandText = "SELECT * FROM Employee WHERE ID = @ID";
+                    command.CommandText = "SELECT * FROM Employee2 WHERE ID = @ID";
                     command.Parameters.AddWithValue("@ID", idFilter);
                     try
                     {
