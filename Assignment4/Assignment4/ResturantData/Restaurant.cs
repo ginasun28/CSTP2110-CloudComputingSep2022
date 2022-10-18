@@ -8,7 +8,8 @@ namespace Assignment4.ResturantData
 {
     public class Restaurant : ITableEntity
     {
-        public string PartitionKey { get; set; } = default; // restaurant ID
+        //public Guid Id { get; set; } = Guid.NewGuid();
+        public string PartitionKey { get; set; } = default ; // restaurant ID
         public string RowKey { get; set; } = default; // restaurant Name
         public DateTimeOffset? Timestamp { get; set; } = default;
         public ETag ETag { get; set; } = default;
@@ -48,7 +49,7 @@ namespace Assignment4.ResturantData
         public int CompareTo(Restaurant r)
         {
             Console.WriteLine(this.Rating - r.Rating);
-            return this.Rating - r.Rating;
+            return (int)(this.Rating - r.Rating);
         }
 
     }
