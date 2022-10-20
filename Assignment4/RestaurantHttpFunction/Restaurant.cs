@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Text;
 using Azure;
 using Azure.Data.Tables;
+using System.Security.Cryptography.X509Certificates;
 
 namespace RestaurantHttpFunction
 {
@@ -15,9 +16,11 @@ namespace RestaurantHttpFunction
         public DateTimeOffset? Timestamp { get; set; } = default;
         public ETag ETag { get; set; } = default;
         
-        public string NumberAndStreet { get; set; }
-        public string City { get; set; }
-        public string PostalCode { get; set; }
+        //public string NumberAndStreet { get; set; }
+        //public string City { get; set; }
+        //public string PostalCode { get; set; }
+        //public string PostalCode { get; set; }
+        public string Address { get; set; }
         public string WebsiteUrl { get; set; }
         public string PhoneNumber { get; set; }
         public string Email { get; set; }
