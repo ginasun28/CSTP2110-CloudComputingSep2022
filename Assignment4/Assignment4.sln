@@ -3,9 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.2.32505.173
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Assignment4", "Assignment4\Assignment4.csproj", "{812B541F-FA72-4747-9BB2-1AB100FBB044}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RestaurantHttpFunction", "RestaurantHttpFunction\RestaurantHttpFunction.csproj", "{6669F570-CBFE-4C44-978A-F778645B15C4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RestaurantHttpFunction", "RestaurantHttpFunction\RestaurantHttpFunction.csproj", "{6669F570-CBFE-4C44-978A-F778645B15C4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -13,10 +11,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{812B541F-FA72-4747-9BB2-1AB100FBB044}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{812B541F-FA72-4747-9BB2-1AB100FBB044}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{812B541F-FA72-4747-9BB2-1AB100FBB044}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{812B541F-FA72-4747-9BB2-1AB100FBB044}.Release|Any CPU.Build.0 = Release|Any CPU
 		{6669F570-CBFE-4C44-978A-F778645B15C4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{6669F570-CBFE-4C44-978A-F778645B15C4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6669F570-CBFE-4C44-978A-F778645B15C4}.Release|Any CPU.ActiveCfg = Release|Any CPU
