@@ -32,6 +32,7 @@ namespace RestaurantHttpFunction.Restaurant_CRUD
             string url = req.Query["url"];
             string phonenum = req.Query["phonenum"];
             string email = req.Query["email"];
+
             string t1 = req.Query["isVegetarian"];
             bool isVegetarian = bool.Parse(t1 ?? "false"); //if t1 is null give false
             t1 = req.Query["isVegan"];
@@ -43,10 +44,6 @@ namespace RestaurantHttpFunction.Restaurant_CRUD
             int relativeCost = int.Parse(t1 ?? "0");
             string workHour = req.Query["workHour"];
 
-            //double rating = double.Parse(req.Query["rating"]); // user's rating 
-            //double totalrating = double.Parse(req.Query["totalrating"]); // sum of user's rating
-            //int numofrating = int.Parse(req.Query["numofrating"]); // count of user's rating
-            //double finalrating = double.Parse(req.Query["finalrating"]); // average of restaurant rating
 
             var restaurant = new Restaurant()
             {
@@ -56,7 +53,7 @@ namespace RestaurantHttpFunction.Restaurant_CRUD
                 //City = "Vancouver",
                 //PostalCode = "V6E3V5",
                 Address = address,
-                WebsitURL = url,
+                WebsiteURL = url,
                 PhoneNumber = phonenum,
                 Email = email,
                 IsVegetarian = isVegetarian,
@@ -69,26 +66,11 @@ namespace RestaurantHttpFunction.Restaurant_CRUD
             };
             new RestaurantRepository(storageConfiguration, tableName).Add(restaurant);
 
+            //string requestBody = await new StreamReader(req.Body).ReadToEndAsync();
+            //dynamic data = JsonConvert.DeserializeObject(requestBody);
+            //name = name ?? data?.name;
 
 
-
-
-            string requestBody = await new StreamReader(req.Body).ReadToEndAsync();
-            dynamic data = JsonConvert.DeserializeObject(requestBody);
-            name = name ?? data?.name;
-
-            //testResults test = new testResults();
-            //test.testRestaurant.PartitionKey = id;
-            //test.testRestaurant.RowKey = name;
-            
-            //var restaurant 
-            
-
-            string responseMessage = string.IsNullOrEmpty(name)
-                ? "Please pass a name in the query string or in the request body for a personalized response."
-                : $"Hello, {name}. This HTTP triggered function executed successfully.";
-
-            return new OkObjectResult(responseMessage);
         }
     }
 }
