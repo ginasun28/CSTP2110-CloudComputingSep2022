@@ -33,12 +33,12 @@ namespace RestaurantHttpFunction.Restaurant_CRUD
 
             // Take all data to revise the current data
             var rest = repo.Get(id, name); // keep data not revise
-            // 指定修改一個Varilable才會改動數據, 如無改動則數據不會變動
+            // Specifying that modifying a variable will only change the data // 指定修改一個Varilable才會改動數據, 如無改動則數據不會變動
             if (!string.IsNullOrEmpty(address))
             {
                 rest.Address = address;
             }
-            // 指定修改一個Varilable才會改動數據, 如無改動則數據不會變動
+            // Specifying that modifying a variable will only change the data // 指定修改一個Varilable才會改動數據, 如無改動則數據不會變動
             if (!string.IsNullOrEmpty(email))
             {
                 rest.Email = email;

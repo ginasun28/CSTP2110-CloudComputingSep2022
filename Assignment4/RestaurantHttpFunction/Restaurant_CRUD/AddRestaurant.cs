@@ -11,7 +11,7 @@ using Assignment4.ResturantData;
 using Assignment4.Common;
 
 
-namespace RestaurantHttpFunction.Restaurant_CRUD
+namespace Assignment4.Restaurant_CRUD
 {
     // Create function
     public static class AddRestaurant
@@ -69,7 +69,9 @@ namespace RestaurantHttpFunction.Restaurant_CRUD
             //string requestBody = await new StreamReader(req.Body).ReadToEndAsync();
             //dynamic data = JsonConvert.DeserializeObject(requestBody);
             //name = name ?? data?.name;
+            
 
+            return new OkObjectResult($"Hello, The restaurant {name} is added successfully.");
 
         }
     }
