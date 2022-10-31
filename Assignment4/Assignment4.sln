@@ -5,6 +5,8 @@ VisualStudioVersion = 17.2.32505.173
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RestaurantHttpFunction", "RestaurantHttpFunction\RestaurantHttpFunction.csproj", "{6669F570-CBFE-4C44-978A-F778645B15C4}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Assignment4", "Assignment4\Assignment4.csproj", "{658AD7E5-B37E-4AD4-8353-F79D26F6FE12}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{6669F570-CBFE-4C44-978A-F778645B15C4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6669F570-CBFE-4C44-978A-F778645B15C4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6669F570-CBFE-4C44-978A-F778645B15C4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{658AD7E5-B37E-4AD4-8353-F79D26F6FE12}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{658AD7E5-B37E-4AD4-8353-F79D26F6FE12}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{658AD7E5-B37E-4AD4-8353-F79D26F6FE12}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{658AD7E5-B37E-4AD4-8353-F79D26F6FE12}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

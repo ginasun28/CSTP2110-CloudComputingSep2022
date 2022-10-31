@@ -7,8 +7,7 @@ using Microsoft.Azure.WebJobs.Extensions.Http;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
-using Assignment4.ResturantData;
-using Assignment4.Common;
+
 
 
 namespace RestaurantHttpFunction.Restaurant_CRUD
@@ -16,12 +15,10 @@ namespace RestaurantHttpFunction.Restaurant_CRUD
     // Create function
     public static class AddRestaurant
     {
-        private static IStorageConfiguration storageConfiguration = new StorageConfiguration();
-        private static string tableName = "Restaurant";
 
         [FunctionName("Create")]
         public static async Task<IActionResult> Run(
-            [HttpTrigger(AuthorizationLevel.Anonymous, "post", "get", Route = null)] HttpRequest req,
+            [HttpTrigger(AuthorizationLevel.Anonymous, "post", Route = null)] HttpRequest req,
             ILogger log)
         {
             log.LogInformation("C# HTTP trigger function processed a request.");
@@ -45,32 +42,10 @@ namespace RestaurantHttpFunction.Restaurant_CRUD
             string workHour = req.Query["workHour"];
 
 
-            var restaurant = new Restaurant()
-            {
-                PartitionKey = id,
-                RowKey = name,
-                //NumberAndStreet = "777 Thurlow St",
-                //City = "Vancouver",
-                //PostalCode = "V6E3V5",
-                Address = address,
-                WebsiteURL = url,
-                PhoneNumber = phonenum,
-                Email = email,
-                IsVegetarian = isVegetarian,
-                IsVegan = isVegan,
-                IsServeAlchohol = isServeAlchohol,
-                NameOfCuisine = cuisine,
-                RelativeCost = relativeCost,
-                WorkHour = workHour
-
-            };
-            new RestaurantRepository(storageConfiguration, tableName).Add(restaurant);
-
             //string requestBody = await new StreamReader(req.Body).ReadToEndAsync();
             //dynamic data = JsonConvert.DeserializeObject(requestBody);
             //name = name ?? data?.name;
-
-
+            return new OkObjectResult($"The restaurant {name} is added successfully");
         }
     }
 }

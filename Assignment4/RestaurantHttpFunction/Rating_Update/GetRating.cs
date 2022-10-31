@@ -7,16 +7,12 @@ using Microsoft.Azure.WebJobs.Extensions.Http;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
-using Assignment4.ResturantData;
-using Assignment4.Common;
 using System.Collections.Generic;
 
 namespace RestaurantHttpFunction.Rating_Update
 {
     public static class GetRating
     {
-        private static IStorageConfiguration storageConfiguration = new StorageConfiguration();
-        private static string tableName = "Restaurant";
 
         [FunctionName("GetRating")]
         public static async Task<IActionResult> Run(
@@ -28,10 +24,12 @@ namespace RestaurantHttpFunction.Rating_Update
             string name = req.Query["name"];
             string id = req.Query["id"];
 
-            var repo = new RestaurantRepository(storageConfiguration, tableName);
-            var rest = repo.Get(id, name);
+            // Connect to Azure Table function
+            // Code here
 
-            string responseMessage = $"Rate: {rest.Rating}, Total rate: {rest.TotalRating}, Number of Rate: {rest.NumberOfRating}, Average rate: {rest.TotalRating / rest.NumberOfRating}";
+            var rest = "get name and id";
+
+            string responseMessage = $"Rate: {rest}, Total rate: {rest}, Number of Rate: {rest}, Average rate: {rest}";
 
             return new OkObjectResult(responseMessage);
         }

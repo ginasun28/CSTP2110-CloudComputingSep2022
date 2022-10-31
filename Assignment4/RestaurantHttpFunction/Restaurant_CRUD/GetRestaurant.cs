@@ -7,16 +7,12 @@ using Microsoft.Azure.WebJobs.Extensions.Http;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
-using Assignment4.ResturantData;
-using Assignment4.Common;
 
 
 namespace RestaurantHttpFunction.Restaurant_CRUD
 {
     public static class GetRestaurant
     {
-        private static IStorageConfiguration storageConfiguration = new StorageConfiguration();
-        private static string tableName = "Restaurant";
 
         [FunctionName("Read")]
         public static async Task<IActionResult> Run(
@@ -28,11 +24,9 @@ namespace RestaurantHttpFunction.Restaurant_CRUD
             string id = req.Query["id"];
             string name = req.Query["name"];
 
-            var rest = new RestaurantRepository(storageConfiguration, tableName).Get(id, name);
-            //string requestBody = await new StreamReader(req.Body).ReadToEndAsync();
-            //dynamic data = JsonConvert.DeserializeObject(requestBody);
-            
-            var data = JsonConvert.SerializeObject(rest);
+
+            string requestBody = await new StreamReader(req.Body).ReadToEndAsync();
+            dynamic data = JsonConvert.DeserializeObject(requestBody);
 
 
             string responseMessage = string.IsNullOrEmpty(data)

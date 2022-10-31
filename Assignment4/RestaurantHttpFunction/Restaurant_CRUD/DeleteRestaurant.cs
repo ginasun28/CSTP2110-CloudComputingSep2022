@@ -7,16 +7,12 @@ using Microsoft.Azure.WebJobs.Extensions.Http;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
-using Assignment4.ResturantData;
-using Assignment4.Common;
 
 
 namespace RestaurantHttpFunction.Restaurant_CRUD
 {
     public static class DeleteRestaurant
     {
-        private static IStorageConfiguration storageConfiguration = new StorageConfiguration();
-        private static string tableName = "Restaurant";
 
         [FunctionName("Delete")]
         public static async Task<IActionResult> Run(
@@ -27,8 +23,6 @@ namespace RestaurantHttpFunction.Restaurant_CRUD
 
             string id = req.Query["id"];
             string name = req.Query["name"];
-
-            new RestaurantRepository(storageConfiguration, tableName).DeleteRestaurant(id, name);
 
             //string requestBody = await new StreamReader(req.Body).ReadToEndAsync();
             //dynamic data = JsonConvert.DeserializeObject(requestBody);
