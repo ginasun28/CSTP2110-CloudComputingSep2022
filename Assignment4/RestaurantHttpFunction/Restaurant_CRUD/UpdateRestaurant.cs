@@ -9,7 +9,7 @@ using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
 
 
-namespace RestaurantHttpFunction.Restaurant_CRUD
+namespace Assignment4.Restaurant_CRUD
 {
     public static class UpdateRestaurant
     {
@@ -26,9 +26,14 @@ namespace RestaurantHttpFunction.Restaurant_CRUD
             string email = req.Query["email"];
             string rate = req.Query["rate"];
 
+
             string requestBody = await new StreamReader(req.Body).ReadToEndAsync();
             dynamic data = JsonConvert.DeserializeObject(requestBody);
             name = name ?? data?.name;
+
+            // Connect to Azure Table function
+            // Code here
+
 
             string responseMessage = string.IsNullOrEmpty(name)
                 ? "This HTTP triggered function executed successfully. Pass a name in the query string or in the request body for a personalized response."

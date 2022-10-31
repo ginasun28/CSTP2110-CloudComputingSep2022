@@ -10,7 +10,7 @@ using Newtonsoft.Json;
 
 
 
-namespace RestaurantHttpFunction.Restaurant_CRUD
+namespace Assignment4.Restaurant_CRUD
 {
     // Create function
     public static class AddRestaurant
@@ -41,11 +41,16 @@ namespace RestaurantHttpFunction.Restaurant_CRUD
             int relativeCost = int.Parse(t1 ?? "0");
             string workHour = req.Query["workHour"];
 
+            // Connect to Azure Table function
+            // Code here
+
 
             //string requestBody = await new StreamReader(req.Body).ReadToEndAsync();
             //dynamic data = JsonConvert.DeserializeObject(requestBody);
             //name = name ?? data?.name;
+
             return new OkObjectResult($"The restaurant {name} is added successfully");
+
         }
     }
 }

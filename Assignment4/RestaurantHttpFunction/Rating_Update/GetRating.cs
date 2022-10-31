@@ -9,7 +9,7 @@ using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
 using System.Collections.Generic;
 
-namespace RestaurantHttpFunction.Rating_Update
+namespace Assignment4.Rating_Update
 {
     public static class GetRating
     {
